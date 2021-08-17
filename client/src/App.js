@@ -739,8 +739,7 @@ const App = () => {
 
   const submitOrder = async (addressData) => {
     console.log(addressData, currentUserDetails);
-    const API_URL = `http://localhost:5000/api/v1/users`;
-    const orderUrl = `${API_URL}/razorpay/order`;
+    const orderUrl = `${url}/razorpay/order`;
     const response = await axios.post(orderUrl, {
       cartTotalPrice: cartTotalPrice,
     });
@@ -753,7 +752,7 @@ const App = () => {
       handler: async (response) => {
         try {
           const paymentId = response.razorpay_payment_id;
-          const razorpayUrl = `${API_URL}/razorpay/capture/${paymentId}`;
+          const razorpayUrl = `${url}/razorpay/capture/${paymentId}`;
           const captureResponse = await axios.post(razorpayUrl, {
             amount: data.order.amount,
           });
