@@ -14,7 +14,7 @@
   "author": "Rupam Swargiary",
   "license": "ISC",
   "dependencies": {
-    "aws-sdk": "2.x",
+    "aws-sdk": "^2.969.0",
     "axios": "^0.21.1",
     "bcrypt": "^5.0.0",
     "dotenv": "^10.0.0",
