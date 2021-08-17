@@ -338,26 +338,47 @@ const App = () => {
       formData.append("myImage", userProfileImage, userProfileImage.name);
 
       await axios.post(`${url}/uploads`, formData).then(async () => {
-        await axios
-          .post(`${url}/signup`, {
+        try {
+          const response = await axios.post(`${url}/signup`, {
             firstName: firstName,
             lastName: lastName,
             email: email,
             password: password,
             confirmPassword: confirmPassword,
             userProfileImage: userProfileImage.name,
-          })
-          .then((result) => {
-            setSuccessMessage(result.data.message);
-            console.log(result);
-            setLoginButtonLoading(false);
-          })
-          .then(() => changeLoginSignup("Login"))
-          .catch((err) => {
+          });
+          setSuccessMessage(response.data.message);
+          console.log(response);
+          setLoginButtonLoading(false);
+          changeLoginSignup("Login");
+        } catch (err) {
+          if (err) {
             console.log(err.response.data.message);
             setErrorMessage(err.response.data.message);
             setLoginButtonLoading(false);
-          });
+          }
+        }
+
+        // await axios
+        //   .post(`${url}/signup`, {
+        //     firstName: firstName,
+        //     lastName: lastName,
+        //     email: email,
+        //     password: password,
+        //     confirmPassword: confirmPassword,
+        //     userProfileImage: userProfileImage.name,
+        //   })
+        //   .then((result) => {
+        //     setSuccessMessage(result.data.message);
+        //     console.log(result);
+        //     setLoginButtonLoading(false);
+        //   })
+        //   .then(() => changeLoginSignup("Login"))
+        //   .catch((err) => {
+        //     console.log(err.response.data.message);
+        //     setErrorMessage(err.response.data.message);
+        //     setLoginButtonLoading(false);
+        //   });
       });
     }
   };
