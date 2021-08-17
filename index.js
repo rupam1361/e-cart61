@@ -32,27 +32,22 @@ aws.config.update({
 
 // Using MongoDB
 const connectDb = async () => {
-  // try {
-  //   await mongoose.connect(process.env.MONGO_URL, {
+  try {
+    await mongoose.connect(process.env.MONGO_URL, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
+    console.log("Connected to MongoDB");
+  } catch (err) {
+    console.log("Connection Failed");
+  }
+  // mongoose
+  //   .connect(process.env.MONGO_URL, {
   //     useNewUrlParser: true,
   //     useUnifiedTopology: true,
   //   })
-  //   console.log("Connected to MongoDB");
-  // } catch (err) {
-  //   console.log("Connection Failed");
-  // }
-  mongoose
-    .connect(process.env.MONGO_URL, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    })
-    .then(() => console.log("Connected to DB"))
-    .catch((err) => console.log("Connection Failed" + err));
-
-  mongoose.set("useNewUrlParser", true);
-  mongoose.set("useFindAndModify", false);
-  mongoose.set("useCreateIndex", true);
-  mongoose.set("useUnifiedTopology", true);
+  //   .then(() => console.log("Connected to DB"))
+  //   .catch((err) => console.log("Connection Failed" + err));
 };
 connectDb();
 
