@@ -349,7 +349,7 @@ const App = () => {
           })
           .then((result) => {
             setSuccessMessage(result.data.message);
-            console.log(result.data);
+            console.log(result);
             setLoginButtonLoading(false);
           })
           .then(() => changeLoginSignup("Login"))
