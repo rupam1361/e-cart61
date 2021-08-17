@@ -30,8 +30,6 @@ aws.config.update({
   region: "ap-south-1",
 });
 
-const clients = {};
-
 // Using MongoDB
 const connectDb = async () => {
   try {
