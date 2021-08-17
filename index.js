@@ -48,6 +48,11 @@ const connectDb = async () => {
     })
     .then(() => console.log("Connected to DB"))
     .catch((err) => console.log("Connection Failed" + err));
+
+  mongoose.set("useNewUrlParser", true);
+  mongoose.set("useFindAndModify", false);
+  mongoose.set("useCreateIndex", true);
+  mongoose.set("useUnifiedTopology", true);
 };
 connectDb();
 
