@@ -1,0 +1,39 @@
+{
+  "name": "react_n_node",
+  "version": "1.0.0",
+  "description": "E shopping cart",
+  "main": "index.js",
+  "scripts": {
+    "client-install": "npm install --prefix client",
+    "start": "node index.js",
+    "server": "nodemon index.js",
+    "client": "npm start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
+  },
+  "author": "Rupam Swargiary",
+  "license": "ISC",
+  "dependencies": {
+    "aws-sdk": "2.x",
+    "axios": "^0.21.1",
+    "bcrypt": "^5.0.0",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "mailgun-js": "^0.22.0",
+    "mongoose": "^5.9.18",
+    "multer": "^1.4.2",
+    "node-fetch": "^2.6.1",
+    "nodemailer": "^6.4.10",
+    "nodemon": "^2.0.4",
+    "razorpay": "^2.0.6",
+    "request": "^2.88.2",
+    "socket.io": "^4.1.2",
+    "uuid": "^8.1.0",
+    "ws": "^7.4.6"
+  },
+  "engines": {
+    "node": "12.18.4",
+    "npm": "6.14.6"
+  }
+}
