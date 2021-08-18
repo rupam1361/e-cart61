@@ -1015,8 +1015,8 @@ router.put("/:userId/products/:productId", checkAuth, (req, res) => {
 });
 
 // Delete a Product Route
-router.delete("/:userId/products/:productId", checkAuth, (req, res) => {
-  Product.find({ _id: req.body.productId })
+router.delete("/:userId/products/:productId", (req, res) => {
+  Product.findOne({ _id: req.body.productId })
     .exec()
     .then((data) => {
       if (data) {

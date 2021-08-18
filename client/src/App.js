@@ -683,8 +683,14 @@ const App = () => {
     }
   };
 
-  const deleteProduct = (product) => {
-    axios
+  const deleteProduct = async (product) => {
+    // const config = {
+    //   headers: {
+    //     Authorization: token,
+    //   },
+    // };
+    console.log(product);
+    await axios
       .delete(`${url}/${currentUserDetails._id}/products/${product._id}`, {
         productId: product._id,
       })

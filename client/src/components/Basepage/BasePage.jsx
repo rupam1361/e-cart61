@@ -258,18 +258,22 @@ const BasePage = ({
               </TabPane>
             ))}
           </Tabs> */}
-          {currentUserDetails.role === "Admin" ? (
-            secondBreadcrum !== "Add Product" ? (
-              <Fab
-                color="primary"
-                className={classes.fab}
-                aria-label="add"
-                size="medium"
-                onClick={() => changeCategory("Add Product")}
-              >
-                <PlusOutlined />
-              </Fab>
-            ) : null
+          {!isSingleProductPageActive ? (
+            <div>
+              {currentUserDetails.role === "Admin" ? (
+                secondBreadcrum !== "Add Product" ? (
+                  <Fab
+                    color="primary"
+                    className={classes.fab}
+                    aria-label="add"
+                    size="medium"
+                    onClick={() => changeCategory("Add Product")}
+                  >
+                    <PlusOutlined />
+                  </Fab>
+                ) : null
+              ) : null}
+            </div>
           ) : null}
         </Content>
       </Hidden>
@@ -478,18 +482,22 @@ const BasePage = ({
               </TabPane>
             ))}
           </Tabs> */}
-          {currentUserDetails.role === "Admin" ? (
-            secondBreadcrum !== "Add Product" ? (
-              <Fab
-                color="primary"
-                className={classes.fabMobile}
-                aria-label="add"
-                size="medium"
-                onClick={() => changeCategory("Add Product")}
-              >
-                <PlusOutlined />
-              </Fab>
-            ) : null
+          {!isSingleProductPageActive ? (
+            <div>
+              {currentUserDetails.role === "Admin" ? (
+                secondBreadcrum !== "Add Product" ? (
+                  <Fab
+                    color="primary"
+                    className={classes.fabMobile}
+                    aria-label="add"
+                    size="medium"
+                    onClick={() => changeCategory("Add Product")}
+                  >
+                    <PlusOutlined />
+                  </Fab>
+                ) : null
+              ) : null}
+            </div>
           ) : null}
         </Content>
       </Hidden>
