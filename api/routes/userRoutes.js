@@ -897,13 +897,16 @@ router.get("/:userId/products/:productId", checkAuth, (req, res) => {
 
 // Store images Route
 router.post("/uploads", upload, (req, res) => {
-  const s3 = new aws.S3({ s3ForcePathStyle: true });
+  const s3 = new aws.S3();
   const fileName = req.file.filename;
+  const fileType = req.file.mimetype;
 
   const s3Params = {
     Bucket: S3_BUCKET,
     Key: fileName,
     Body: fs.readFileSync(req.file.path),
+    ContentType: fileType,
+    ACL: "public-read",
   };
 
   s3.getSignedUrl("putObject", s3Params, (err, data) => {
@@ -920,6 +923,7 @@ router.post("/uploads", upload, (req, res) => {
         profileImage = req.file;
         displayImage = req.file;
         res.status(200).json({
+          data: data,
           message: "File uploaded successfully..",
           file: `https://${S3_BUCKET}.s3.amazonaws.com/${req.file.filename}`,
         });
