@@ -906,7 +906,7 @@ router.post("/uploads", upload, (req, res) => {
     Body: fs.readFileSync(req.file.path),
   };
 
-  s3.upload(s3Params, (err, data) => {
+  s3.getSignedUrl("putObject", s3Params, (err, data) => {
     if (err) {
       res.json({
         message: err,
