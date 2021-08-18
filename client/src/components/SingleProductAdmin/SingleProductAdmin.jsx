@@ -11,6 +11,7 @@ import {
   Alert,
   InputNumber,
   Select,
+  Modal,
 } from "antd";
 import {
   TagOutlined,
@@ -35,6 +36,8 @@ const SingleProductAdmin = ({
   productSubCategory,
   updateChangeProductCategory,
   errorMessage,
+  editButtonLoading,
+  deleteProduct,
 }) => {
   const [displayImage, setDisplayImage] = useState(null);
 
@@ -43,6 +46,9 @@ const SingleProductAdmin = ({
   const [price, setPrice] = useState("");
   const [subCategory, setSubCategory] = useState("");
   const [productImage, setProductImage] = useState(null);
+  const [isDeleteProductModalOpened, setIsDeleteProductModalOpened] = useState(
+    false
+  );
 
   useEffect(() => {
     setTitle(product.name);
@@ -74,6 +80,14 @@ const SingleProductAdmin = ({
     if (e.target.files[0]) {
       setDisplayImage(URL.createObjectURL(e.target.files[0]));
     }
+  };
+
+  const openModal = () => {
+    setIsDeleteProductModalOpened(true);
+  };
+
+  const handleCancel = () => {
+    setIsDeleteProductModalOpened(false);
   };
 
   return (
@@ -290,24 +304,30 @@ const SingleProductAdmin = ({
                   </Button>
                 </Col>
                 <Col span={11} offset={2}>
-                  <Button
-                    type="primary"
-                    icon={<SaveOutlined />}
-                    onClick={() =>
-                      saveChanges(
-                        product,
-                        product._id,
-                        title,
-                        description,
-                        price,
-                        productImage,
-                        subCategory
-                      )
-                    }
-                    block
-                  >
-                    Save
-                  </Button>
+                  {editButtonLoading ? (
+                    <Button type="primary" loading block>
+                      Saving Changes..
+                    </Button>
+                  ) : (
+                    <Button
+                      type="primary"
+                      icon={<SaveOutlined />}
+                      onClick={() =>
+                        saveChanges(
+                          product,
+                          product._id,
+                          title,
+                          description,
+                          price,
+                          productImage,
+                          subCategory
+                        )
+                      }
+                      block
+                    >
+                      Save
+                    </Button>
+                  )}
                 </Col>
               </Row>
             </div>
@@ -319,7 +339,13 @@ const SingleProductAdmin = ({
               }}
             >
               <Col span={11}>
-                <Button type="primary" icon={<DeleteOutlined />} danger block>
+                <Button
+                  type="primary"
+                  icon={<DeleteOutlined />}
+                  onClick={() => openModal(product)}
+                  danger
+                  block
+                >
                   Delete
                 </Button>
               </Col>
@@ -337,6 +363,19 @@ const SingleProductAdmin = ({
           )}
         </Col>
       </Row>
+      <Modal
+        style={{ top: 220 }}
+        title="Delete Product"
+        visible={isDeleteProductModalOpened}
+        okText="Delete"
+        onOk={() => {
+          deleteProduct(product);
+          setIsDeleteProductModalOpened(false);
+        }}
+        onCancel={handleCancel}
+      >
+        <Typography>Are you sure to delete this product?</Typography>
+      </Modal>
       {/* <Card
         hoverable
         style={{ borderRadius: 10 }}

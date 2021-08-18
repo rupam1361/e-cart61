@@ -87,6 +87,7 @@ const LoginPage = ({
                   <Form.Item label="Email Address" name="email">
                     <Input
                       placeholder="Email address.."
+                      type="email"
                       value={forgotPasswordEmail}
                       onChange={(e) => setForgotPasswordEmail(e.target.value)}
                     />
@@ -142,15 +143,6 @@ const LoginPage = ({
                     <Alert
                       style={{ textAlign: "center" }}
                       message={successMessage}
-                      // message={
-                      //   <>
-                      //     <span>Account created successfully..</span>
-                      //     <br />{" "}
-                      //     <span style={{ fontStyle: "italic" }}>
-                      //       Please login to continue
-                      //     </span>
-                      //   </>
-                      // }
                       type="success"
                     />
                   </Form.Item>
@@ -159,6 +151,7 @@ const LoginPage = ({
                   <Input
                     placeholder="Email"
                     value={email}
+                    type="email"
                     onChange={(e) => setEmail(e.target.value)}
                   />
                 </Form.Item>
@@ -259,6 +252,7 @@ const LoginPage = ({
                     <Input
                       placeholder="Email address.."
                       value={forgotPasswordEmail}
+                      type="email"
                       onChange={(e) => setForgotPasswordEmail(e.target.value)}
                     />
                   </Form.Item>
@@ -311,15 +305,6 @@ const LoginPage = ({
                     <Alert
                       style={{ textAlign: "center" }}
                       message={successMessage}
-                      // message={
-                      //   <>
-                      //     <span>Account created successfully..</span>
-                      //     <br />{" "}
-                      //     <span style={{ fontStyle: "italic" }}>
-                      //       Please login to continue
-                      //     </span>
-                      //   </>
-                      // }
                       type="success"
                     />
                   </Form.Item>
@@ -328,6 +313,7 @@ const LoginPage = ({
                   <Input
                     placeholder="Email"
                     value={email}
+                    type="email"
                     onChange={(e) => setEmail(e.target.value)}
                   />
                 </Form.Item>
@@ -437,6 +423,7 @@ const LoginPage = ({
                 <Form.Item label="Email" name="email">
                   <Input
                     placeholder="Email"
+                    type="email"
                     onChange={(e) => setSignUpEmail(e.target.value)}
                   />
                 </Form.Item>
@@ -561,6 +548,7 @@ const LoginPage = ({
                 <Form.Item label="Email" name="email">
                   <Input
                     placeholder="Email"
+                    type="email"
                     onChange={(e) => setSignUpEmail(e.target.value)}
                   />
                 </Form.Item>

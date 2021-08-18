@@ -46,6 +46,9 @@ const BasePage = ({
   updateChangeProductCategory,
   addProduct,
   errorMessage,
+  addButtonLoading,
+  editButtonLoading,
+  deleteProduct,
 }) => {
   const classes = useStyles();
 
@@ -106,6 +109,7 @@ const BasePage = ({
                     updateChangeProductCategory={updateChangeProductCategory}
                     addProduct={addProduct}
                     errorMessage={errorMessage}
+                    addButtonLoading={addButtonLoading}
                   />
                 ) : (
                   allProducts
@@ -137,6 +141,8 @@ const BasePage = ({
                                     updateChangeProductCategory
                                   }
                                   errorMessage={errorMessage}
+                                  editButtonLoading={editButtonLoading}
+                                  deleteProduct={deleteProduct}
                                 />
                               ) : (
                                 <SingleProduct
@@ -323,6 +329,7 @@ const BasePage = ({
                     updateChangeProductCategory={updateChangeProductCategory}
                     addProduct={addProduct}
                     errorMessage={errorMessage}
+                    addButtonLoading={addButtonLoading}
                   />
                 ) : (
                   allProducts
@@ -354,6 +361,8 @@ const BasePage = ({
                                     updateChangeProductCategory
                                   }
                                   errorMessage={errorMessage}
+                                  editButtonLoading={editButtonLoading}
+                                  deleteProduct={deleteProduct}
                                 />
                               ) : (
                                 <SingleProduct

@@ -25,6 +25,7 @@ const AddProduct = ({
   updateChangeProductCategory,
   addProduct,
   errorMessage,
+  addButtonLoading,
 }) => {
   const [displayImage, setDisplayImage] = useState(null);
 
@@ -192,22 +193,28 @@ const AddProduct = ({
                   </Form.Item>
                 ) : null}
 
-                <Button
-                  type="primary"
-                  icon={<SaveOutlined />}
-                  onClick={() =>
-                    addProduct(
-                      title,
-                      description,
-                      price,
-                      subCategory,
-                      productImage
-                    )
-                  }
-                  block
-                >
-                  Add Product
-                </Button>
+                {addButtonLoading ? (
+                  <Button type="primary" loading block>
+                    Adding Product..
+                  </Button>
+                ) : (
+                  <Button
+                    type="primary"
+                    icon={<SaveOutlined />}
+                    onClick={() =>
+                      addProduct(
+                        title,
+                        description,
+                        price,
+                        subCategory,
+                        productImage
+                      )
+                    }
+                    block
+                  >
+                    Add Product
+                  </Button>
+                )}
               </div>
             </Col>
             {/* </Card> */}
@@ -341,22 +348,28 @@ const AddProduct = ({
                     <Alert message={errorMessage} type="error" />
                   </Form.Item>
                 ) : null}
-                <Button
-                  type="primary"
-                  icon={<SaveOutlined />}
-                  onClick={() =>
-                    addProduct(
-                      title,
-                      description,
-                      price,
-                      subCategory,
-                      productImage
-                    )
-                  }
-                  block
-                >
-                  Add Product
-                </Button>
+                {addButtonLoading ? (
+                  <Button type="primary" loading block>
+                    Adding Product..
+                  </Button>
+                ) : (
+                  <Button
+                    type="primary"
+                    icon={<SaveOutlined />}
+                    onClick={() =>
+                      addProduct(
+                        title,
+                        description,
+                        price,
+                        subCategory,
+                        productImage
+                      )
+                    }
+                    block
+                  >
+                    Add Product
+                  </Button>
+                )}
               </Col>
             </Card>
           </Row>

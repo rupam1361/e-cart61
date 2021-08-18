@@ -906,7 +906,6 @@ router.post("/uploads", upload, (req, res) => {
     Key: fileName,
     Body: fs.readFileSync(req.file.path),
     ContentType: fileType,
-    ACL: "public-read",
   };
 
   s3.getSignedUrl("putObject", s3Params, (err, data) => {
@@ -1017,7 +1016,7 @@ router.put("/:userId/products/:productId", checkAuth, (req, res) => {
 
 // Delete a Product Route
 router.delete("/:userId/products/:productId", checkAuth, (req, res) => {
-  Product.find({ userId: req.params.userId } && { _id: req.params.productId })
+  Product.find({ _id: req.body.productId })
     .exec()
     .then((data) => {
       if (data) {
@@ -1033,7 +1032,7 @@ router.delete("/:userId/products/:productId", checkAuth, (req, res) => {
           if (err) {
             console.log(err);
           } else {
-            Product.deleteOne({ _id: req.params.productId })
+            Product.deleteOne({ _id: req.body.productId })
               .then((result) => {
                 res.status(200).json({
                   message: "Product deleted successfully..",

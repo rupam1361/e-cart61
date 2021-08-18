@@ -15,7 +15,7 @@ import ResetPassword from "./components/ResetPassword/ResetPassword";
 
 import "./App.css";
 
-const url = "/api/v1/users";
+const url = "http://localhost:5000/api/v1/users";
 const imgUrl = `https://ehc-hospital.s3.ap-south-1.amazonaws.com`;
 
 const productCategories = [
@@ -111,6 +111,8 @@ const App = () => {
   );
   const [isPageLoading, setIsPageLoading] = useState(false);
   const [loginBtnLoading, setLoginButtonLoading] = useState(false);
+  const [addButtonLoading, setAddButtonLoading] = useState(false);
+  const [editButtonLoading, setEditButtonLoading] = useState(false);
   const [currentUserDetails, setCurrentUserDetails] = useState({});
   const [cart, setCart] = useState([]);
   const [cartBadge, setCartBadge] = useState(null);
@@ -475,6 +477,7 @@ const App = () => {
       setErrorMessage("Please choose a Product Image");
     } else {
       setErrorMessage("");
+      setAddButtonLoading(true);
       const formData = new FormData();
       formData.append("myImage", productImage, productImage.name);
       await axios
@@ -501,6 +504,7 @@ const App = () => {
             )
             .then((data) => {
               console.log(data.data);
+              setAddButtonLoading(false);
               changeCategory("Home");
               // parentCallback(data.data.message, "success");
               // setIsSaving(false);
@@ -617,6 +621,8 @@ const App = () => {
       } else if (subCategory === "") {
         setErrorMessage("Please choose a Sub-category..");
       } else {
+        setErrorMessage("");
+        setEditButtonLoading(true);
         const formData = new FormData();
         formData.append("myImage", productImage, productImage.name);
         await axios.post(`${url}/uploads`, formData).then(async () => {
@@ -631,6 +637,7 @@ const App = () => {
             })
             .then(() => {
               goToSingleProduct(product);
+              setEditButtonLoading(false);
               setIsEditModeActive(false);
             });
         });
@@ -656,6 +663,8 @@ const App = () => {
       } else if (subCategory === "") {
         setErrorMessage("Please choose a Sub-category..");
       } else {
+        setErrorMessage("");
+        setEditButtonLoading(true);
         await axios
           .put(`${url}/${currentUserDetails._id}/products/${productId}`, {
             name: title,
@@ -667,10 +676,23 @@ const App = () => {
           })
           .then(() => {
             goToSingleProduct(product);
+            setEditButtonLoading(false);
             setIsEditModeActive(false);
           });
       }
     }
+  };
+
+  const deleteProduct = (product) => {
+    axios
+      .delete(`${url}/${currentUserDetails._id}/products/${product._id}`, {
+        productId: product._id,
+      })
+      .then((data) => {
+        console.log(data.data.message);
+        changeCategory("Home");
+      })
+      .catch((err) => console.log(err));
   };
 
   const addToCart = async (product, quantity) => {
@@ -1048,6 +1070,9 @@ const App = () => {
             addProduct={addProduct}
             updateChangeProductCategory={updateChangeProductCategory}
             errorMessage={errorMessage}
+            addButtonLoading={addButtonLoading}
+            editButtonLoading={editButtonLoading}
+            deleteProduct={deleteProduct}
           />
         </Route>
         <Route path="/cart">
