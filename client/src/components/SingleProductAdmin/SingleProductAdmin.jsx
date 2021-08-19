@@ -342,7 +342,7 @@ const SingleProductAdmin = ({
                 <Button
                   type="primary"
                   icon={<DeleteOutlined />}
-                  onClick={() => openModal(product)}
+                  onClick={() => openModal()}
                   danger
                   block
                 >
@@ -369,7 +369,7 @@ const SingleProductAdmin = ({
         visible={isDeleteProductModalOpened}
         okText="Delete"
         onOk={() => {
-          deleteProduct(product);
+          deleteProduct(product, product._id);
           setIsDeleteProductModalOpened(false);
         }}
         onCancel={handleCancel}

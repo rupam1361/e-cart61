@@ -15,7 +15,7 @@ import ResetPassword from "./components/ResetPassword/ResetPassword";
 
 import "./App.css";
 
-const url = "/api/v1/users";
+const url = "http://localhost:5000/api/v1/users";
 const imgUrl = `https://ehc-hospital.s3.ap-south-1.amazonaws.com`;
 
 const productCategories = [
@@ -683,7 +683,7 @@ const App = () => {
     }
   };
 
-  const deleteProduct = async (product) => {
+  const deleteProduct = async (product, productId) => {
     // const config = {
     //   headers: {
     //     Authorization: token,
@@ -691,9 +691,7 @@ const App = () => {
     // };
     console.log(product);
     await axios
-      .delete(`${url}/${currentUserDetails._id}/products/${product._id}`, {
-        productId: product._id,
-      })
+      .delete(`${url}/${currentUserDetails._id}/products/${productId}`)
       .then((data) => {
         console.log(data.data.message);
         changeCategory("Home");

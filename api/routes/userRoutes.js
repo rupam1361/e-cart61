@@ -908,7 +908,7 @@ router.post("/uploads", upload, (req, res) => {
     ContentType: fileType,
   };
 
-  s3.getSignedUrl("putObject", s3Params, (err, data) => {
+  s3.upload(s3Params, "putObject", (err, data) => {
     if (err) {
       res.json({
         message: err,
@@ -1016,9 +1016,9 @@ router.put("/:userId/products/:productId", checkAuth, (req, res) => {
 
 // Delete a Product Route
 router.delete("/:userId/products/:productId", (req, res) => {
-  Product.findOne({ _id: req.body.productId })
+  Product.find({ _id: req.params.productId })
     .exec()
-    .then((data) => {
+    .then(async (data) => {
       if (data) {
         const s3 = new aws.S3();
         const fileName = data[0].productImage;
@@ -1028,11 +1028,11 @@ router.delete("/:userId/products/:productId", (req, res) => {
           Key: fileName,
         };
 
-        s3.deleteObject(s3Params, (err, data1) => {
+        s3.deleteObject(s3Params, async (err, data1) => {
           if (err) {
             console.log(err);
           } else {
-            Product.deleteOne({ _id: req.body.productId })
+            await Product.deleteOne({ _id: req.params.productId })
               .then((result) => {
                 res.status(200).json({
                   message: "Product deleted successfully..",
