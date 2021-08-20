@@ -1115,7 +1115,7 @@ router.post("/razorpay/capture/:paymentId", (req, res) => {
     return request(
       {
         method: "POST",
-        url: `https://${YOUR_KEY_ID}:${YOUR_SECRET}@api.razorpay.com/v1/payments/${req.params.paymentId}/capture`,
+        url: `https://rzp_test_XbPt3CKqRft6q6:i9b2pBsHtDFznceFsjVWjHDn@api.razorpay.com/v1/payments/${req.params.paymentId}/capture`,
         form: {
           amount: 100,
           currency: "INR",
