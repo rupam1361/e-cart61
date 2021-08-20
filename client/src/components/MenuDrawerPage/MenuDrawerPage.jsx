@@ -16,7 +16,7 @@ const MenuDrawerPage = ({
 }) => {
   return (
     <Drawer
-      height={234}
+      height={currentUserDetails._id ? 234 : 138}
       placement="top"
       onClose={closeMenuDrawer}
       visible={menuDrawerVisible}
@@ -26,24 +26,28 @@ const MenuDrawerPage = ({
         <Menu.Item key="Home" icon={<HomeOutlined />}>
           Home
         </Menu.Item>
-        <Menu.Item key="Cart" icon={<ShoppingCartOutlined />}>
-          Cart
-          {currentUserDetails._id ? (
-            <Badge
-              count={cartBadge}
-              style={{ marginLeft: 5, marginTop: -4 }}
-            ></Badge>
-          ) : null}
-        </Menu.Item>
-        <Menu.Item key="Orders" icon={<UnorderedListOutlined />}>
-          Orders
-          {currentUserDetails.role === "Admin" ? (
-            <Badge
-              count={pendingAdminOrdersList}
-              style={{ marginLeft: 5, marginTop: -4 }}
-            ></Badge>
-          ) : null}
-        </Menu.Item>
+        {currentUserDetails._id ? (
+          <Menu.Item key="Cart" icon={<ShoppingCartOutlined />}>
+            Cart
+            {currentUserDetails._id ? (
+              <Badge
+                count={cartBadge}
+                style={{ marginLeft: 5, marginTop: -4 }}
+              ></Badge>
+            ) : null}
+          </Menu.Item>
+        ) : null}
+        {currentUserDetails._id ? (
+          <Menu.Item key="Orders" icon={<UnorderedListOutlined />}>
+            Orders
+            {currentUserDetails.role === "Admin" ? (
+              <Badge
+                count={pendingAdminOrdersList}
+                style={{ marginLeft: 5, marginTop: -4 }}
+              ></Badge>
+            ) : null}
+          </Menu.Item>
+        ) : null}
       </Menu>
     </Drawer>
   );

@@ -111,91 +111,33 @@ const OrdersPage = ({
                                       alignItems: "center",
                                     }}
                                   >
-                                    <Col
-                                      span={12}
-                                      style={{
-                                        display: "flex",
-                                        justifyContent: "flex-start",
-                                        alignItems: "center",
-                                      }}
-                                    >
-                                      <Col>
-                                        <Typography className="orderId">
-                                          <span
-                                            style={{ fontWeight: "normal" }}
-                                          >
-                                            Order ID:
-                                          </span>{" "}
-                                          <span>{order._id}</span>
-                                        </Typography>
-                                        <div>
-                                          <Typography className="orderPlacedOn">
-                                            Placed on{" "}
-                                            {
-                                              new Date(
-                                                parseInt(order.createdAt)
-                                              )
-                                                .toDateString()
-                                                .split(" ")[2]
-                                            }{" "}
-                                            {
-                                              new Date(
-                                                parseInt(order.createdAt)
-                                              )
-                                                .toDateString()
-                                                .split(" ")[1]
-                                            }
-                                            ,{" "}
-                                            {
-                                              new Date(
-                                                parseInt(order.createdAt)
-                                              )
-                                                .toDateString()
-                                                .split(" ")[3]
-                                            }
-                                          </Typography>
-                                        </div>
-                                      </Col>
-                                    </Col>
-                                    <Col span={8}>
-                                      <Row
-                                        style={{
-                                          display: "flex",
-                                          justifyContent: "space-between",
-                                          alignItems: "center",
-                                        }}
-                                      >
-                                        <Col>
-                                          <Button
-                                            shape="round"
-                                            type="default"
-                                            onClick={() =>
-                                              getSingleOrder(order)
-                                            }
-                                          >
-                                            View Details
-                                          </Button>
-                                        </Col>
-
-                                        <Col style={{ fontWeight: 600 }}>
-                                          <Typography>Total:</Typography>
-                                        </Col>
-                                        <Col
-                                          style={{
-                                            display: "flex",
-                                            justifyContent: "center",
-                                            alignItems: "center",
-                                            fontSize: 18,
-                                            fontWeight: 600,
-                                          }}
-                                        >
-                                          &#8377;{" "}
-                                          <Typography>
-                                            {order.cartTotalPrice}
-                                          </Typography>
-                                        </Col>
-                                      </Row>
-                                    </Col>
+                                    <Typography className="orderId">
+                                      <span style={{ fontWeight: "normal" }}>
+                                        Order ID:
+                                      </span>{" "}
+                                      <span>{order._id}</span>
+                                    </Typography>
+                                    <div>
+                                      <Typography className="orderPlacedOn">
+                                        Placed on{" "}
+                                        {
+                                          new Date(parseInt(order.createdAt))
+                                            .toDateString()
+                                            .split(" ")[2]
+                                        }{" "}
+                                        {
+                                          new Date(parseInt(order.createdAt))
+                                            .toDateString()
+                                            .split(" ")[1]
+                                        }
+                                        ,{" "}
+                                        {
+                                          new Date(parseInt(order.createdAt))
+                                            .toDateString()
+                                            .split(" ")[3]
+                                        }
+                                      </Typography>
+                                    </div>
                                   </Row>
                                   <Row
                                     style={{
@@ -294,6 +236,62 @@ const OrdersPage = ({
                                       ))}
                                     </Col>
                                   </Row>
+                                  <Card>
+                                    <Row
+                                      style={{
+                                        display: "flex",
+                                        justifyContent: "space-between",
+                                      }}
+                                    >
+                                      <Col
+                                        style={{
+                                          display: "flex",
+                                          justifyContent: "center",
+                                        }}
+                                      >
+                                        <Button
+                                          type="default"
+                                          onClick={() => getSingleOrder(order)}
+                                        >
+                                          View Details
+                                        </Button>
+                                      </Col>
+                                      <Col
+                                        style={{
+                                          display: "flex",
+                                          justifyContent: "center",
+                                        }}
+                                      >
+                                        <Row
+                                          style={{
+                                            display: "flex",
+                                            justifyContent: "space-between",
+                                            alignItems: "center",
+                                          }}
+                                        >
+                                          <Col style={{ fontWeight: 600 }}>
+                                            <Typography>Total:</Typography>
+                                          </Col>
+                                          <Col
+                                            style={{
+                                              display: "flex",
+                                              justifyContent: "center",
+                                              fontSize: 18,
+                                              fontWeight: 600,
+                                              marginLeft: 10,
+                                            }}
+                                          >
+                                            &#8377;{" "}
+                                            <Typography
+                                              style={{ marginLeft: 5 }}
+                                            >
+                                              {order.cartTotalPrice}
+                                            </Typography>
+                                          </Col>
+                                        </Row>
+                                      </Col>
+                                    </Row>
+                                  </Card>
                                   <Card>
                                     <Row
                                       style={{
@@ -547,52 +545,6 @@ const OrdersPage = ({
                                     </Typography>
                                   </Col>
                                 </Col>
-                                <Col style={{ width: 360, marginTop: 20 }}>
-                                  <Row
-                                    style={{
-                                      display: "flex",
-                                      justifyContent: "space-between",
-                                      alignItems: "center",
-                                    }}
-                                  >
-                                    <Col span={8}>
-                                      <Button
-                                        shape="round"
-                                        type="default"
-                                        onClick={() => getSingleOrder(order)}
-                                      >
-                                        View Details
-                                      </Button>
-                                    </Col>
-
-                                    <Col
-                                      span={9}
-                                      style={{
-                                        display: "flex",
-                                        justifyContent: "space-between",
-                                        alignItems: "center",
-                                      }}
-                                    >
-                                      <Col style={{ fontWeight: 600 }}>
-                                        <Typography>Total:</Typography>
-                                      </Col>
-                                      <Col
-                                        style={{
-                                          display: "flex",
-                                          justifyContent: "center",
-                                          alignItems: "center",
-                                          fontSize: 18,
-                                          fontWeight: 600,
-                                        }}
-                                      >
-                                        &#8377;{" "}
-                                        <Typography>
-                                          {order.cartTotalPrice}
-                                        </Typography>
-                                      </Col>
-                                    </Col>
-                                  </Row>
-                                </Col>
                               </Row>
                               <Divider />
                               <Row
@@ -612,7 +564,7 @@ const OrdersPage = ({
                                           alignItems: "center",
                                         }}
                                       >
-                                        <Col
+                                        <Row
                                           style={{
                                             width: 360,
                                             display: "flex",
@@ -655,7 +607,7 @@ const OrdersPage = ({
                                                 justifyContent: "space-between",
                                               }}
                                             >
-                                              <Col span={10}>
+                                              <Col>
                                                 <Typography>
                                                   Qty:{" "}
                                                   <span
@@ -665,10 +617,7 @@ const OrdersPage = ({
                                                   </span>
                                                 </Typography>
                                               </Col>
-                                              <Col
-                                                span={10}
-                                                style={{ textAlign: "end" }}
-                                              >
+                                              <Col style={{ textAlign: "end" }}>
                                                 <Row>
                                                   <Col>
                                                     <Title level={5}>
@@ -683,12 +632,58 @@ const OrdersPage = ({
                                               </Col>
                                             </Row>
                                           </Col>
-                                        </Col>
+                                        </Row>
 
                                         <Divider />
                                       </Row>
                                     </div>
                                   ))}
+                                  <Col>
+                                    <Row
+                                      style={{
+                                        display: "flex",
+                                        justifyContent: "space-between",
+                                        alignItems: "center",
+                                      }}
+                                    >
+                                      <Col span={8}>
+                                        <Button
+                                          type="default"
+                                          onClick={() => getSingleOrder(order)}
+                                        >
+                                          View Details
+                                        </Button>
+                                      </Col>
+
+                                      <Col
+                                        span={9}
+                                        style={{
+                                          display: "flex",
+                                          justifyContent: "space-between",
+                                          alignItems: "center",
+                                        }}
+                                      >
+                                        <Col style={{ fontWeight: 600 }}>
+                                          <Typography>Total:</Typography>
+                                        </Col>
+                                        <Col
+                                          style={{
+                                            display: "flex",
+                                            justifyContent: "center",
+                                            alignItems: "center",
+                                            fontSize: 18,
+                                            fontWeight: 600,
+                                          }}
+                                        >
+                                          &#8377;{" "}
+                                          <Typography>
+                                            {order.cartTotalPrice}
+                                          </Typography>
+                                        </Col>
+                                      </Col>
+                                    </Row>
+                                  </Col>
+                                  <Divider />
 
                                   <Col
                                     style={{
@@ -740,9 +735,9 @@ const OrdersPage = ({
 
                                       <Col
                                         style={{
-                                          marginTop: 10,
+                                          marginTop: 16,
                                           width: 360,
-                                          fontStyle: "italic",
+
                                           fontSize: 14,
                                           display: "flex",
                                           justifyContent: "space-between",
@@ -751,12 +746,19 @@ const OrdersPage = ({
                                       >
                                         <Typography
                                           style={{
+                                            color: "rgb(180, 180, 180)",
+                                          }}
+                                        >
+                                          Expected delivery date:
+                                        </Typography>
+                                        <Typography
+                                          style={{
                                             color: "rgb(100, 100, 100)",
+                                            fontStyle: "italic",
                                           }}
                                         >
                                           {order.deliveryDate ? (
                                             <>
-                                              Expected to be delivered by{" "}
                                               {
                                                 new Date(
                                                   parseInt(order.deliveryDate)
@@ -781,16 +783,9 @@ const OrdersPage = ({
                                               }
                                             </>
                                           ) : (
-                                            "Delivery Status: Pending"
+                                            "Pending"
                                           )}
                                         </Typography>
-                                        {/* <Typography
-                              style={{
-                                fontWeight: 600,
-                              }}
-                            >
-                              
-                            </Typography> */}
                                       </Col>
                                     </Row>
                                   </Col>
@@ -809,7 +804,6 @@ const OrdersPage = ({
                             />
                           </Card>
                         )}
-                        {/* <Divider /> */}
                       </div>
                     ))}
                 </div>

@@ -852,15 +852,6 @@ const App = () => {
     const rzp1 = new window.Razorpay(options);
 
     rzp1.open();
-    // rzp1.on("payment.failed", (response) => {
-    //   alert(response.error.code);
-    //   alert(response.error.description);
-    //   alert(response.error.source);
-    //   alert(response.error.step);
-    //   alert(response.error.reason);
-    //   alert(response.error.metadata.order_id);
-    //   alert(response.error.metadata.payment_id);
-    // });
   };
 
   const getOrdersForAdmin = async () => {
@@ -969,8 +960,9 @@ const App = () => {
         )
         .then(async (data) => pushAdminNotificationsToCustomer(data))
         .then(() => {
-          getOrdersForAdmin();
-          getOrdersForUser();
+          // getOrdersForAdmin();
+          // getOrdersForUser();
+          getSingleOrder(selectedOrder);
           setIsAcceptOrderModalVisible(false);
         });
     }

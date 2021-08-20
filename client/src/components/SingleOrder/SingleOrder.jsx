@@ -14,8 +14,7 @@ const SingleOrder = ({
   currentUserDetails,
   showAcceptOrderModal,
 }) => {
-  console.log(currentUserDetails);
-  return (
+  return currentUserDetails._id ? (
     <Layout>
       <Hidden xsDown>
         <Content
@@ -31,6 +30,39 @@ const SingleOrder = ({
         >
           <Card style={{ backgroundColor: "rgb(240, 240, 240)" }}>
             <Row
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+              }}
+            >
+              <Typography className="orderId">
+                <span style={{ fontWeight: "normal" }}>Order ID:</span>{" "}
+                <span>{order._id}</span>
+              </Typography>
+              <div>
+                <Typography className="orderPlacedOn">
+                  Placed on{" "}
+                  {
+                    new Date(parseInt(order.createdAt))
+                      .toDateString()
+                      .split(" ")[2]
+                  }{" "}
+                  {
+                    new Date(parseInt(order.createdAt))
+                      .toDateString()
+                      .split(" ")[1]
+                  }
+                  ,{" "}
+                  {
+                    new Date(parseInt(order.createdAt))
+                      .toDateString()
+                      .split(" ")[3]
+                  }
+                </Typography>
+              </div>
+            </Row>
+            {/* <Row
               style={{
                 display: "flex",
                 justifyContent: "space-between",
@@ -81,21 +113,7 @@ const SingleOrder = ({
                     alignItems: "center",
                   }}
                 >
-                  {currentUserDetails.role === "Admin" ? (
-                    !order.isAcceptedByAdmin ? (
-                      <Col>
-                        <Button
-                          shape="round"
-                          type="default"
-                          onClick={() => showAcceptOrderModal(order)}
-                        >
-                          Accept Order
-                        </Button>
-                      </Col>
-                    ) : null
-                  ) : (
-                    <></>
-                  )}
+                  
 
                   <Col style={{ fontWeight: 600 }}>
                     <Typography>Total:</Typography>
@@ -113,7 +131,7 @@ const SingleOrder = ({
                   </Col>
                 </Row>
               </Col>
-            </Row>
+            </Row> */}
             <Row
               style={{
                 display: "flex",
@@ -244,43 +262,60 @@ const SingleOrder = ({
                     justifyContent: "center",
                   }}
                 >
-                  <Typography
-                    style={{
-                      color: "rgb(180, 180, 180)",
-                      marginRight: 10,
-                    }}
-                  >
-                    Expected Delivery Date:
-                  </Typography>
-                  <Typography
-                    style={{
-                      fontSize: 14,
-                      fontWeight: 600,
-                    }}
-                  >
-                    {order.deliveryDate ? (
-                      <>
-                        {
-                          new Date(parseInt(order.deliveryDate))
-                            .toDateString()
-                            .split(" ")[2]
-                        }{" "}
-                        {
-                          new Date(parseInt(order.deliveryDate))
-                            .toDateString()
-                            .split(" ")[1]
-                        }
-                        ,{" "}
-                        {
-                          new Date(parseInt(order.deliveryDate))
-                            .toDateString()
-                            .split(" ")[3]
-                        }
-                      </>
-                    ) : (
-                      "Pending"
-                    )}
-                  </Typography>
+                  {order.deliveryDate ? (
+                    <div style={{ display: "flex" }}>
+                      <Typography
+                        style={{
+                          color: "rgb(180, 180, 180)",
+                          marginRight: 10,
+                        }}
+                      >
+                        Expected Delivery Date:
+                      </Typography>
+                      <Typography
+                        style={{
+                          fontSize: 14,
+                          fontWeight: 600,
+                        }}
+                      >
+                        <>
+                          {
+                            new Date(parseInt(order.deliveryDate))
+                              .toDateString()
+                              .split(" ")[2]
+                          }{" "}
+                          {
+                            new Date(parseInt(order.deliveryDate))
+                              .toDateString()
+                              .split(" ")[1]
+                          }
+                          ,{" "}
+                          {
+                            new Date(parseInt(order.deliveryDate))
+                              .toDateString()
+                              .split(" ")[3]
+                          }
+                        </>
+                      </Typography>
+                    </div>
+                  ) : (
+                    <div>
+                      {currentUserDetails.role === "Admin" ? (
+                        !order.isAcceptedByAdmin ? (
+                          <Col>
+                            <Button
+                              type="primary"
+                              onClick={() => showAcceptOrderModal(order)}
+                            >
+                              Accept Order
+                            </Button>
+                          </Col>
+                        ) : null
+                      ) : (
+                        <></>
+                      )}
+                    </div>
+                  )}
                 </Col>
               </Row>
             </Card>
@@ -476,7 +511,7 @@ const SingleOrder = ({
                               justifyContent: "space-between",
                             }}
                           >
-                            <Col span={10}>
+                            <Col>
                               <Typography>
                                 Qty:{" "}
                                 <span style={{ fontWeight: 600 }}>
@@ -484,7 +519,7 @@ const SingleOrder = ({
                                 </span>
                               </Typography>
                             </Col>
-                            <Col span={10} style={{ textAlign: "end" }}>
+                            <Col style={{ textAlign: "end" }}>
                               <Row>
                                 <Col>
                                   <Title level={5}>
@@ -618,7 +653,7 @@ const SingleOrder = ({
 
                     <Col
                       style={{
-                        marginTop: 10,
+                        marginTop: 20,
                         width: 360,
                         fontStyle: "italic",
                         fontSize: 14,
@@ -627,35 +662,71 @@ const SingleOrder = ({
                         alignItems: "center",
                       }}
                     >
-                      <Typography
-                        style={{
-                          color: "rgb(100, 100, 100)",
-                        }}
-                      >
-                        {order.deliveryDate ? (
-                          <>
-                            Expected to be delivered by{" "}
-                            {
-                              new Date(parseInt(order.deliveryDate))
-                                .toDateString()
-                                .split(" ")[2]
-                            }{" "}
-                            {
-                              new Date(parseInt(order.deliveryDate))
-                                .toDateString()
-                                .split(" ")[1]
-                            }
-                            ,{" "}
-                            {
-                              new Date(parseInt(order.deliveryDate))
-                                .toDateString()
-                                .split(" ")[3]
-                            }
-                          </>
-                        ) : (
-                          "Delivery Status: Pending"
-                        )}
-                      </Typography>
+                      {order.deliveryDate ? (
+                        <Col
+                          style={{
+                            width: 360,
+
+                            fontSize: 14,
+                            display: "flex",
+                            justifyContent: "space-between",
+                            alignItems: "center",
+                          }}
+                        >
+                          <Typography
+                            style={{
+                              color: "rgb(180, 180, 180)",
+                            }}
+                          >
+                            Expected delivery date:
+                          </Typography>
+                          <Typography
+                            style={{
+                              color: "rgb(100, 100, 100)",
+                              fontStyle: "italic",
+                            }}
+                          >
+                            {order.deliveryDate ? (
+                              <>
+                                {
+                                  new Date(parseInt(order.deliveryDate))
+                                    .toDateString()
+                                    .split(" ")[2]
+                                }{" "}
+                                {
+                                  new Date(parseInt(order.deliveryDate))
+                                    .toDateString()
+                                    .split(" ")[1]
+                                }
+                                ,{" "}
+                                {
+                                  new Date(parseInt(order.deliveryDate))
+                                    .toDateString()
+                                    .split(" ")[3]
+                                }
+                              </>
+                            ) : (
+                              "Pending"
+                            )}
+                          </Typography>
+                        </Col>
+                      ) : (
+                        <div style={{ width: 360 }}>
+                          {currentUserDetails.role === "Admin" ? (
+                            !order.isAcceptedByAdmin ? (
+                              <Button
+                                block
+                                type="primary"
+                                onClick={() => showAcceptOrderModal(order)}
+                              >
+                                Accept Order
+                              </Button>
+                            ) : null
+                          ) : (
+                            <></>
+                          )}
+                        </div>
+                      )}
                     </Col>
                   </Row>
                 </Col>
@@ -711,7 +782,7 @@ const SingleOrder = ({
         </Content>
       </Hidden>
     </Layout>
-  );
+  ) : null;
 };
 
 export default SingleOrder;
