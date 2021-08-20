@@ -22,7 +22,7 @@ const mailgun = require("mailgun-js");
 const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD;
 
 const mg = mailgun({
-  apiKey: "2af9c1eacf5be490e192e1fbee942f47-ffefc4e4-55dc853f",
+  apiKey: process.env.MAILGUN_API_KEY,
   domain: process.env.MAILGUN_DOMAIN,
 });
 
@@ -1088,8 +1088,8 @@ router.post("/refresh-token", (req, res) => {
 
 router.post("/razorpay/order", (req, res) => {
   const instance = new Razorpay({
-    key_id: "rzp_test_XbPt3CKqRft6q6",
-    key_secret: "i9b2pBsHtDFznceFsjVWjHDn",
+    key_id: YOUR_KEY_ID,
+    key_secret: YOUR_SECRET,
   });
 
   const options = {
@@ -1115,7 +1115,7 @@ router.post("/razorpay/capture/:paymentId", (req, res) => {
     return request(
       {
         method: "POST",
-        url: `https://rzp_test_XbPt3CKqRft6q6:i9b2pBsHtDFznceFsjVWjHDn@api.razorpay.com/v1/payments/${req.params.paymentId}/capture`,
+        url: `https://${YOUR_KEY_ID}:${YOUR_SECRET}@api.razorpay.com/v1/payments/${req.params.paymentId}/capture`,
         form: {
           amount: 100,
           currency: "INR",
