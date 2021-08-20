@@ -15,7 +15,7 @@ import ResetPassword from "./components/ResetPassword/ResetPassword";
 
 import "./App.css";
 
-const url = "/api/v1/users";
+const url = "http://localhost:5000/api/v1/users";
 const imgUrl = `https://ehc-hospital.s3.ap-south-1.amazonaws.com`;
 
 const productCategories = [

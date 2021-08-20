@@ -22,7 +22,7 @@ const mailgun = require("mailgun-js");
 const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD;
 
 const mg = mailgun({
-  apiKey: process.env.MAILGUN_API_KEY,
+  apiKey: "2af9c1eacf5be490e192e1fbee942f47-ffefc4e4-55dc853f",
   domain: process.env.MAILGUN_DOMAIN,
 });
 
@@ -217,9 +217,9 @@ router.post("/forgotPassword", (req, res) => {
         const passwordResetUrl = `${req.body.passwordResetUrl}/reset-password/${token}`;
 
         const reply = {
-          from: req.body.passwordResetUrl,
+          from: "e-cart13@herokuapp.com",
           to: req.body.email,
-          subject: "Reset your password for E-Cart",
+          subject: "Reset your password for E-cart13",
           html: `
           <p>We have received a password reset request. The link to reset your password is below. if you did not make this request, ignore this mail</p>
           <a href=${passwordResetUrl}>${passwordResetUrl}</a>
