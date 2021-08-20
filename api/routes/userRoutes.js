@@ -1089,7 +1089,7 @@ router.post("/refresh-token", (req, res) => {
 router.post("/razorpay/order", (req, res) => {
   const instance = new Razorpay({
     key_id: "rzp_test_XbPt3CKqRft6q6",
-    key_secret: YOUR_SECRET,
+    key_secret: "i9b2pBsHtDFznceFsjVWjHDn",
   });
 
   const options = {
