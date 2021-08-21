@@ -360,27 +360,6 @@ const App = () => {
             setLoginButtonLoading(false);
           }
         }
-
-        // await axios
-        //   .post(`${url}/signup`, {
-        //     firstName: firstName,
-        //     lastName: lastName,
-        //     email: email,
-        //     password: password,
-        //     confirmPassword: confirmPassword,
-        //     userProfileImage: userProfileImage.name,
-        //   })
-        //   .then((result) => {
-        //     setSuccessMessage(result.data.message);
-        //     console.log(result);
-        //     setLoginButtonLoading(false);
-        //   })
-        //   .then(() => changeLoginSignup("Login"))
-        //   .catch((err) => {
-        //     console.log(err.response.data.message);
-        //     setErrorMessage(err.response.data.message);
-        //     setLoginButtonLoading(false);
-        //   });
       });
     }
   };

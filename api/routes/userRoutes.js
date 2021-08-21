@@ -217,9 +217,9 @@ router.post("/forgotPassword", (req, res) => {
         const passwordResetUrl = `${req.body.passwordResetUrl}/reset-password/${token}`;
 
         const reply = {
-          from: "e-cart13@herokuapp.com",
+          from: "e-cart61@herokuapp.com",
           to: req.body.email,
-          subject: "Reset your password for E-cart13",
+          subject: "Reset your password for E-cart61",
           html: `
           <p>We have received a password reset request. The link to reset your password is below. if you did not make this request, ignore this mail</p>
           <a href=${passwordResetUrl}>${passwordResetUrl}</a>
