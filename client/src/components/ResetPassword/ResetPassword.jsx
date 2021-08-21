@@ -144,7 +144,7 @@ const ResetPassword = ({
             <Typography style={{ marginBottom: 16 }}>
               Reset Password?
             </Typography>
-            {isPasswordResetSuccess ? (
+            {!isPasswordResetSuccess ? (
               <Card
                 style={{
                   display: "flex",
