@@ -22,7 +22,7 @@ const mailgun = require("mailgun-js");
 const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD;
 
 const mg = mailgun({
-  apiKey: "2af9c1eacf5be490e192e1fbee942f47-ffefc4e4-55dc853f",
+  apiKey: process.env.MAILGUN_API_KEY,
   domain: process.env.MAILGUN_DOMAIN,
 });
 
