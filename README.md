@@ -2,6 +2,8 @@
 
 A Shopping Cart App build with the MERN Stack
 
+Techs used: AWS S3 Bucket, Mailgun, Razorpay
+
 The frontend part is build with React JS with Ant Design.
 
 A user needs to have an account to be able to order orders. When a user adds a product to his cart, the database gets immediately updated rather than just updating in the frontend.
